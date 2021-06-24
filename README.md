@@ -28,8 +28,10 @@ Modificar el archivo **appsettings.json** que se encuentra en la carpeta config.
 }
 ```
 Reemplazar **ClimaDatabase** por la dirección donde monten la base de datos.
+
 Después tienen que correr los script que se encuentra en la carpeta **DataBase** en el orden establecido.
 Tambien deje un backup de mi base para que tengan datos.
+
 Luego tienen que montar la app de forma local en el IIS y modificar las Urls de la parte de Frontend.
 
 **Frontend:** https://github.com/fwaicen/frontend_appclima
