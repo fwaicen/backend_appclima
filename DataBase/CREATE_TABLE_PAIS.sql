@@ -1,0 +1,27 @@
+USE [Clima]
+GO
+
+/****** Object:  Table [dbo].[Pais]    Script Date: 6/24/2021 3:43:20 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Pais](
+	[PaisCodigo] [char](3) NOT NULL,
+	[PaisNombre] [char](52) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[PaisCodigo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Pais] ADD  DEFAULT ('') FOR [PaisCodigo]
+GO
+
+ALTER TABLE [dbo].[Pais] ADD  DEFAULT ('') FOR [PaisNombre]
+GO
+
+
