@@ -20,7 +20,6 @@ namespace AppClima.Models
 
         public virtual DbSet<Ciudad> Ciudades { get; set; }
         public virtual DbSet<Historico> Historicos { get; set; }
-        public virtual DbSet<Pais> Pais { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -59,12 +58,6 @@ namespace AppClima.Models
                     .IsUnicode(false)
                     .HasDefaultValueSql("('')")
                     .IsFixedLength(true);
-
-                entity.HasOne(d => d.PaisCodigoNavigation)
-                    .WithMany(p => p.Ciudades)
-                    .HasForeignKey(d => d.PaisCodigo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Ciudad_Pais");
             });
 
             modelBuilder.Entity<Historico>(entity =>
@@ -90,25 +83,6 @@ namespace AppClima.Models
                     .IsFixedLength(true);
 
                 entity.Property(e => e.SensacionTermica).HasColumnType("decimal(4, 2)");
-            });
-
-            modelBuilder.Entity<Pais>(entity =>
-            {
-                entity.HasKey(e => e.PaisCodigo)
-                    .HasName("PK__Pais__F3A7B39AE772EE19");
-
-                entity.Property(e => e.PaisCodigo)
-                    .HasMaxLength(3)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('')")
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.PaisNombre)
-                    .IsRequired()
-                    .HasMaxLength(52)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('')")
-                    .IsFixedLength(true);
             });
 
             OnModelCreatingPartial(modelBuilder);

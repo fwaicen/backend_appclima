@@ -13,6 +13,5 @@ namespace AppClima.Models
 
         public string PaisNombre { get; set; }
 
-        public virtual Pais PaisCodigoNavigation { get; set; }
     }
 }
