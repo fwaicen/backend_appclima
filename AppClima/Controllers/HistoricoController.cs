@@ -16,6 +16,7 @@ namespace AppClima.Controllers
     [ApiController]
     public class HistoricoController : ControllerBase
     {
+        // Obtiene el Historico de consultas de la ciudad
         [HttpGet]
         public IActionResult Get(string ciudad, string pais)
         {
@@ -41,33 +42,6 @@ namespace AppClima.Controllers
                     var lstHistoricos = db.Historicos.FromSqlRaw("EXECUTE spGetHistorico @Ciudad, @Pais", parameters).ToList();
                     oRespuesta.Exito = 1;
                     oRespuesta.Data = lstHistoricos;
-                }
-            }
-            catch (Exception ex)
-            {
-                oRespuesta.Mensaje = ex.Message;
-                throw;
-            }
-
-            return Ok(oRespuesta);
-        }
-
-        [HttpPost]
-        public IActionResult Add(Historico oModel)
-        {
-            Respuesta oRespuesta = new Respuesta();
-            try
-            {
-                using (ClimaContext db = new ClimaContext())
-                {
-                    Historico oHistorico = new Historico();
-                    oHistorico.PaisNombre = oModel.PaisNombre;
-                    oHistorico.CiudadNombre = oModel.CiudadNombre;
-                    oHistorico.Clima = oModel.Clima;
-                    oHistorico.SensacionTermica = oModel.SensacionTermica;
-                    db.Historicos.Add(oHistorico);
-                    db.SaveChanges();
-                    oRespuesta.Exito = 1;
                 }
             }
             catch (Exception ex)

@@ -2,6 +2,7 @@
 
 namespace AppClima.Models
 {
+    // Clase para ayudar con el llamado a servicios
     public class ApiHelper
     {
         public static HttpClient ApiClient { get; set; }

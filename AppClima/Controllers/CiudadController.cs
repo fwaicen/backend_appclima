@@ -13,6 +13,7 @@ namespace AppClima.Controllers
     [ApiController]
     public class CiudadController : ControllerBase
     {
+        // Obtiene las Ciudades y el Pais correspondiente desde la base de datos
         [HttpGet]
         public IActionResult Get()
         {

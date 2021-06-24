@@ -16,6 +16,7 @@ namespace AppClima.Controllers
     [ApiController]
     public class ClimaController : ControllerBase
     {
+        // Obtiene los datos del Clima (Temperatura, Sensacion Termica)
         [HttpGet]
         public async Task<IActionResult> GetAsync(string ciudad, string pais)
         {
@@ -29,6 +30,7 @@ namespace AppClima.Controllers
                                     .Build();
                 var url = new Uri(configuration.GetConnectionString("ApiWeather"));
 
+                // Llamado a la API externa de Clima
                 using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url + "&q=" + ciudad))
                 {
                     if (response.IsSuccessStatusCode) 
@@ -43,6 +45,7 @@ namespace AppClima.Controllers
                             historico.SensacionTermica = oModel.main.feels_like;
                             historico.Icon = oModel.weather[0].icon;
                             oRespuesta.Data = JsonConvert.SerializeObject(historico);
+                            // Graba los datos en la tabla Historico
                             db.Historicos.Add(historico);
                             db.SaveChanges();
                         }
